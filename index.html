@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="loadPage()">
-    <div class="input-wrapper">
+    <div class="input-organizer">
       <div id="input-container">
         <div class="total-sum-wrapper">
           <form>
@@ -18,7 +18,9 @@
               placeholder="Har nok av fra før"
             />
           </form>
-          <button onclick="addProductEnough()">Legg til</button>
+          <div class="add-btn-wrapper">
+            <button onclick="addProductEnough()">Legg til</button>
+          </div>
         </div>
       </div>
       <div id="input-container">
@@ -30,7 +32,7 @@
               placeholder="Begynner å gå tom for"
             />
           </form>
-          <div class="button-wrapper">
+          <div class="add-btn-wrapper">
             <button onclick="addProductSoonEmpty()">Legg til</button>
           </div>
         </div>
@@ -52,7 +54,9 @@
               oninput="this.value = filterInput(this.value)"
             />
           </form>
-          <button onclick="addProductBuyMore()">Legg til</button>
+          <div class="add-btn-wrapper">
+            <button onclick="addProductBuyMore()">Legg til</button>
+          </div>
         </div>
       </div>
     </div>
@@ -66,10 +70,7 @@
     <div class="category-list">
       <div>Har nok av</div>
       <div>Begynner å gå tom for</div>
-      <div>
-        Må kjøpe mere av
-        <br />
-      </div>
+      <div>Må kjøpe mer av</div>
     </div>
     <div id="product-list">
       <div id="enough-row"></div>

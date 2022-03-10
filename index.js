@@ -16,25 +16,23 @@ let enoughRow = document.getElementById("enough-row");
 let soonEmptyRow = document.getElementById("soon-empty-row");
 let buyMoreRow = document.getElementById("buy-more-row");
 
-/*function loadPage() {
+function loadPage() {
   alert("Velkommen til din handleliste");
   alert(
-    "For å legge til varer skriver du inn navnet på varen i input-feltet merket med Navn på vare"
+    "Med denne handlelisten kan du legge til varer i tre forskjellige kategorier, varer du har nok av fra før, varer du begynner å gå tom for og varer du må kjøpe inn mer av"
   );
   alert(
-    "Deretter må du velge prisen per vare i feltet under merket pris (kan kun bruke tall som er lik eller høyere enn 1)"
+    "For å legge til varer skriver du inn navnet på varen i input-feltet som passer varens kategori"
   );
   alert(
-    "Når du har skrevet pris og navn på varen må du skrive antallet du ønsker i feltet under merket Antall varer"
+    "Under varer man må kjøpe mer av må du også legge til en pris for varen (kan pris kan kun være et tall som er lik eller høyere enn 1)"
   );
+
   alert(
-    "Du kan endre antall varer etter du har lagt til ved å trykke på + og - knappene i ruten"
+    "For å slette varer kan du trykke på slett knappen nederst i ruten og skrive ja i ruten som popper opp"
   );
-  alert("For å slette varer kan du trykke på slett knappen nederst i ruten");
-  alert("Når du nesten er tom for en vare vil boksen bytte farge til oransje");
 }
-*/
-////////////////////////////////////////
+
 function removeEnoughProduct(index) {
   let confirmDelete = prompt(
     "Ønsker du å slette " + enoughProducts[index].name + "?" + " (ja/nei)"
@@ -79,7 +77,6 @@ function updateEnoughList() {
       "</div>";
   }
 }
-////////////////////////////////////////
 
 function removeSoonEmptyProduct(index) {
   let confirmDelete = prompt(
@@ -125,7 +122,6 @@ function updateSoonEmptyList() {
   }
 }
 
-////////////////////////////////////////
 function removeBuyMoreProduct(index) {
   let confirmDelete = prompt(
     "Ønsker du å slette " + buyMoreProducts[index].name + "?" + " (ja/nei)"
@@ -143,20 +139,18 @@ function removeBuyMoreProduct(index) {
 function addProductBuyMore() {
   if (inputProductNameBuyMore.value == 0) {
     alert("Fyll inn navn på vare");
-    return value;
-  }
-  if (inputPrice.value == 0) {
+  } else if (inputPrice.value == 0) {
     alert("Fyll inn pris på vare");
   } else {
     buyMoreProducts.push({
       name: inputProductNameBuyMore.value,
       price: inputPrice.value,
     });
+    console.log(
+      "La til vare: " + inputProductNameBuyMore.value + ", " + inputPrice.value
+    );
+    updateBuyMoreList();
   }
-  console.log(
-    "La til vare: " + inputProductNameBuyMore.value + ", " + inputPrice.value
-  );
-  updateBuyMoreList();
 }
 
 function updateBuyMoreList() {
@@ -186,6 +180,7 @@ function updateBuyMoreList() {
   document.getElementById("total-sum-all-buyMoreProducts").innerHTML =
     "Total sum av alle varer: " + productPriceSum + " kr";
 }
+
 function filterInput(value) {
   if (value <= 0) {
     value = 1;
