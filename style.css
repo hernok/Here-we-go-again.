@@ -55,6 +55,15 @@ button {
   font-size: 1.4em;
   margin: 10px;
 }
+.tot-sum {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  width: 100%;
+}
+#total-sum-all-buyMoreProducts {
+  width: 100%;
+  font-size: 1.4em;
+}
 #enough-row {
 }
 #soon-empty-row {

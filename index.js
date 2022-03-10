@@ -35,19 +35,6 @@ let buyMoreRow = document.getElementById("buy-more-row");
 }
 */
 ////////////////////////////////////////
-function addProductEnough() {
-  if (enoughProduct == "") {
-    alert("Fyll inn navn på vare");
-  } else {
-    enoughProducts.push({
-      name: inputProductNameEnough.value,
-    });
-
-    console.log("La til vare: " + inputProductNameEnough.value);
-    updateEnoughList();
-  }
-}
-
 function removeEnoughProduct(index) {
   let confirmDelete = prompt(
     "Ønsker du å slette " + enoughProducts[index].name + "?" + " (ja/nei)"
@@ -59,6 +46,19 @@ function removeEnoughProduct(index) {
     alert(productName + " er nå slettet.");
   } else {
     alert("Sletting kansellert.");
+  }
+}
+
+function addProductEnough() {
+  if (inputProductNameEnough.value == 0) {
+    alert("Fyll inn navn på vare");
+  } else {
+    enoughProducts.push({
+      name: inputProductNameEnough.value,
+    });
+
+    console.log("La til vare: " + inputProductNameEnough.value);
+    updateEnoughList();
   }
 }
 
@@ -80,6 +80,7 @@ function updateEnoughList() {
   }
 }
 ////////////////////////////////////////
+
 function removeSoonEmptyProduct(index) {
   let confirmDelete = prompt(
     "Ønsker du å slette " + soonEmptyProducts[index].name + "?" + " (ja/nei)"
@@ -93,13 +94,20 @@ function removeSoonEmptyProduct(index) {
     alert("Sletting kansellert.");
   }
 }
+
 function addProductSoonEmpty() {
-  soonEmptyProducts.push({
-    name: inputProductNameSoonEmpty.value,
-  });
-  console.log("La til vare: " + inputProductNameSoonEmpty.value);
-  updateSoonEmptyList();
+  if (inputProductNameSoonEmpty.value == 0) {
+    alert("Fyll inn navn på vare");
+  } else {
+    soonEmptyProducts.push({
+      name: inputProductNameSoonEmpty.value,
+    });
+
+    console.log("La til vare: " + inputProductNameSoonEmpty.value);
+    updateSoonEmptyList();
+  }
 }
+
 function updateSoonEmptyList() {
   soonEmptyRow.innerHTML = "";
   for (let i = 0; i < soonEmptyProducts.length; i++) {
@@ -116,6 +124,7 @@ function updateSoonEmptyList() {
       "</div>";
   }
 }
+
 ////////////////////////////////////////
 function removeBuyMoreProduct(index) {
   let confirmDelete = prompt(
@@ -130,16 +139,26 @@ function removeBuyMoreProduct(index) {
     alert("Sletting kansellert.");
   }
 }
+
 function addProductBuyMore() {
-  buyMoreProducts.push({
-    name: inputProductNameBuyMore.value,
-    price: inputPrice.value,
-  });
+  if (inputProductNameBuyMore.value == 0) {
+    alert("Fyll inn navn på vare");
+  }
+  if (inputPrice.value == 0) {
+    alert("Fyll inn pris på vare");
+    return value; /////////////////////////////////////////////
+  } else {
+    buyMoreProducts.push({
+      name: inputProductNameBuyMore.value,
+      price: inputPrice.value,
+    });
+  }
   console.log(
     "La til vare: " + inputProductNameBuyMore.value + ", " + inputPrice.value
   );
   updateBuyMoreList();
 }
+
 function updateBuyMoreList() {
   buyMoreRow.innerHTML = "";
   let productPriceSum = 0;
