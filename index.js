@@ -143,10 +143,10 @@ function removeBuyMoreProduct(index) {
 function addProductBuyMore() {
   if (inputProductNameBuyMore.value == 0) {
     alert("Fyll inn navn på vare");
+    return value;
   }
   if (inputPrice.value == 0) {
     alert("Fyll inn pris på vare");
-    return value; /////////////////////////////////////////////
   } else {
     buyMoreProducts.push({
       name: inputProductNameBuyMore.value,
@@ -180,12 +180,12 @@ function updateBuyMoreList() {
       ")'>Slett</button>" +
       "</div>";
 
-    productPriceSum += parseInt(buyMoreProducts[i].price);
+    var itemPrice = parseInt(buyMoreProducts[i].price);
+    productPriceSum += itemPrice;
   }
   document.getElementById("total-sum-all-buyMoreProducts").innerHTML =
     "Total sum av alle varer: " + productPriceSum + " kr";
 }
-
 function filterInput(value) {
   if (value <= 0) {
     value = 1;
