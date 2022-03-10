@@ -4,12 +4,12 @@ body {
 }
 .total-sum-wrapper {
   font-size: 1.2em;
-  display: flex;
 }
 #input-container {
   width: 400px;
   margin: auto;
   display: flex;
+  justify-content: center;
 }
 input {
   height: 30px;
@@ -30,7 +30,8 @@ button {
   position: relative;
 }
 .input-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
 }
 .product-wrapper {
   border: 4px solid;
@@ -39,45 +40,20 @@ button {
   border-radius: 5px;
   font-size: 1.2em;
 }
+.buy-more-inner-wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
 #product-list {
   display: grid;
   grid-template-columns: 33% 33% 33%;
 }
-.plus-button,
-.minus-button {
-  border-radius: 5px;
-  border: 1px solid white;
-  width: 40px;
-  justify-content: center;
-  color: white;
-  position: relative;
-  bottom: 5px;
-  left: 0px;
-}
-.plus-button {
-  background-color: rgb(13, 90, 13);
-  display: inline;
-}
-.minus-button {
-  background-color: rgb(117, 9, 9);
-  display: inline;
-}
-.plus-minus-wrapper {
-  position: relative;
-  top: 5px;
-  display: inline-block;
-}
-.product-amount-text {
-  position: relative;
-  min-width: 35px;
-
-  padding: 10px;
-  display: inline-block;
-}
 .category-list {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  text-align: center;
+  font-size: 1.4em;
+  margin: 10px;
 }
 #enough-row {
 }

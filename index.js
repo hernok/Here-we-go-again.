@@ -1,4 +1,6 @@
-let products = [];
+let enoughProducts = [];
+let soonEmptyProducts = [];
+let buyMoreProducts = [];
 let productContainer = document.getElementById("input-container");
 let inputProductNameEnough = document.getElementById(
   "input-product-name-enough"
@@ -32,101 +34,136 @@ let buyMoreRow = document.getElementById("buy-more-row");
   alert("Når du nesten er tom for en vare vil boksen bytte farge til oransje");
 }
 */
-
+////////////////////////////////////////
 function addProductEnough() {
-  products.push({
-    name: inputProductNameBuyMore.value,
-    price: inputPrice.value,
-  });
-  console.log("La til vare: " + inputProductNameBuyMore.value);
-  updateProductList();
-}
-function addProductSoonEmpty() {
-  products.push({
-    name: inputProductNameBuyMore.value,
-    price: inputPrice.value,
-  });
-  console.log("La til vare: " + inputProductNameBuyMore.value);
-  updateProductList();
-}
-function addProductBuyMore() {
-  products.push({
-    name: inputProductNameBuyMore.value,
-    price: inputPrice.value,
-  });
-  console.log(
-    "La til vare: " + inputProductNameBuyMore.value + ", " + inputPrice.value
-  );
-  updateProductList();
+  if (enoughProduct == "") {
+    alert("Fyll inn navn på vare");
+  } else {
+    enoughProducts.push({
+      name: inputProductNameEnough.value,
+    });
+
+    console.log("La til vare: " + inputProductNameEnough.value);
+    updateEnoughList();
+  }
 }
 
-function removeProduct(index) {
+function removeEnoughProduct(index) {
   let confirmDelete = prompt(
-    "Ønsker du å slette " + products[index].name + "?" + " (ja/nei)"
+    "Ønsker du å slette " + enoughProducts[index].name + "?" + " (ja/nei)"
   );
   if (confirmDelete.toLowerCase() == "ja") {
-    let productName = products[index].name;
-    products.splice(index, 1);
-    updateProductList();
+    let productName = enoughProducts[index].name;
+    enoughProducts.splice(index, 1);
+    updateEnoughList();
     alert(productName + " er nå slettet.");
   } else {
     alert("Sletting kansellert.");
   }
 }
 
-function updateProductList() {
+function updateEnoughList() {
   enoughRow.innerHTML = "";
 
-  for (let i = 0; i < products.length; i++) {
+  for (let i = 0; i < enoughProducts.length; i++) {
     enoughRow.innerHTML +=
       "<div class='product-wrapper' id='product-" +
       i +
       "'>" +
       "<p>Navn på vare: " +
-      products[i].name +
+      enoughProducts[i].name +
       "</p>" +
-      "<button onclick='removeProduct(" +
-      i +
-      ")'>Slett</button>" +
-      "</div>";
-  }
-
-  for (let i = 0; i < products.length; i++) {
-    soonEmptyRow.innerHTML +=
-      "<div class='product-wrapper' id='product-" +
-      i +
-      "'>" +
-      "<p>Navn på vare: " +
-      products[i].name +
-      "</p>" +
-      "<button onclick='removeProduct(" +
+      "<button onclick='removeEnoughProduct(" +
       i +
       ")'>Slett</button>" +
       "</div>";
   }
 }
-function updateProductList() {
-  buyMoreRow.innerHTML = "";
-  let productPriceSum = 0;
-  for (let i = 0; i < products.length; i++) {
-    buyMoreRow.innerHTML +=
+////////////////////////////////////////
+function removeSoonEmptyProduct(index) {
+  let confirmDelete = prompt(
+    "Ønsker du å slette " + soonEmptyProducts[index].name + "?" + " (ja/nei)"
+  );
+  if (confirmDelete.toLowerCase() == "ja") {
+    let productName = soonEmptyProducts[index].name;
+    soonEmptyProducts.splice(index, 1);
+    updateSoonEmptyList();
+    alert(productName + " er nå slettet.");
+  } else {
+    alert("Sletting kansellert.");
+  }
+}
+function addProductSoonEmpty() {
+  soonEmptyProducts.push({
+    name: inputProductNameSoonEmpty.value,
+  });
+  console.log("La til vare: " + inputProductNameSoonEmpty.value);
+  updateSoonEmptyList();
+}
+function updateSoonEmptyList() {
+  soonEmptyRow.innerHTML = "";
+  for (let i = 0; i < soonEmptyProducts.length; i++) {
+    soonEmptyRow.innerHTML +=
       "<div class='product-wrapper' id='product-" +
       i +
       "'>" +
       "<p>Navn på vare: " +
-      products[i].name +
+      soonEmptyProducts[i].name +
+      "</p>" +
+      "<button onclick='removeSoonEmptyProduct(" +
+      i +
+      ")'>Slett</button>" +
+      "</div>";
+  }
+}
+////////////////////////////////////////
+function removeBuyMoreProduct(index) {
+  let confirmDelete = prompt(
+    "Ønsker du å slette " + buyMoreProducts[index].name + "?" + " (ja/nei)"
+  );
+  if (confirmDelete.toLowerCase() == "ja") {
+    let productName = buyMoreProducts[index].name;
+    buyMoreProducts.splice(index, 1);
+    updateBuyMoreList();
+    alert(productName + " er nå slettet.");
+  } else {
+    alert("Sletting kansellert.");
+  }
+}
+function addProductBuyMore() {
+  buyMoreProducts.push({
+    name: inputProductNameBuyMore.value,
+    price: inputPrice.value,
+  });
+  console.log(
+    "La til vare: " + inputProductNameBuyMore.value + ", " + inputPrice.value
+  );
+  updateBuyMoreList();
+}
+function updateBuyMoreList() {
+  buyMoreRow.innerHTML = "";
+  let productPriceSum = 0;
+  for (let i = 0; i < buyMoreProducts.length; i++) {
+    buyMoreRow.innerHTML +=
+      "<div class='product-wrapper' id='product-" +
+      i +
+      "'>" +
+      "<div class='buy-more-inner-wrapper'>" +
+      "<p>Navn på vare: " +
+      buyMoreProducts[i].name +
       "</p>" +
       "<p>Pris for vare: kr " +
-      products[i].price +
+      buyMoreProducts[i].price +
       ",-</p>" +
-      "<button onclick='removeProduct(" +
+      "</div>" +
+      "<button onclick='removeBuyMoreProduct(" +
       i +
       ")'>Slett</button>" +
       "</div>";
 
-    productPriceSum += products[i].price;
+    productPriceSum += buyMoreProducts[i].price;
   }
-  document.getElementById("total-sum-all-products").innerHTML =
+  document.getElementById("total-sum-all-buyMoreProducts").innerHTML =
     "Total sum av alle varer: " + productPriceSum + " kr";
 }
 
