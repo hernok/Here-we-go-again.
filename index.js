@@ -180,7 +180,7 @@ function updateBuyMoreList() {
       ")'>Slett</button>" +
       "</div>";
 
-    productPriceSum += buyMoreProducts[i].price;
+    productPriceSum += parseInt(buyMoreProducts[i].price);
   }
   document.getElementById("total-sum-all-buyMoreProducts").innerHTML =
     "Total sum av alle varer: " + productPriceSum + " kr";

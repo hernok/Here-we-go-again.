@@ -59,10 +59,12 @@ button {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   width: 100%;
+  justify-content: center;
 }
 #total-sum-all-buyMoreProducts {
   width: 100%;
   font-size: 1.4em;
+  padding: 30px;
 }
 #enough-row {
 }
